@@ -18,7 +18,7 @@ public class GuestbookController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String actionName = request.getParameter("a");  //a 파라미터를 받아서 actionName에 넣어준다.
-
+		
 		ActionFactory af = new GuestbookActionFactory();  //af 라는 guestbookactionfactory 객체 만들고 
 		// getAction이라는 함수로 String actionName을 사용 할 수 있게 해주는 Action Factory
 		Action action = af.getAction(actionName); //deleteform이면 /WEB-INF/views/ guestbook/deleteform.jsp 가 action에 들어간다.

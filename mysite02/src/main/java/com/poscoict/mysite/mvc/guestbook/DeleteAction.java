@@ -24,7 +24,7 @@ public class DeleteAction implements Action {
 		new GuestbookDao().delete(no,password);
 		
 		
-		MvcUtil.redirect("/WEB-INF/views/mysite02.guestbook.index.jsp", request, response);
+		MvcUtil.redirect("/mysite02/guestbook", request, response);
 	}
 
 }

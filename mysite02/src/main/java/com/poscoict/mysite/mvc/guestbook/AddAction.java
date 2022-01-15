@@ -28,7 +28,7 @@ public class AddAction implements Action {
 		vo.setMessage(message);
 		new GuestbookDao().insert(vo);
 		
-		MvcUtil.redirect("/WEB-INF/views/mysite02.guestbook.index.jsp", request, response);
+		MvcUtil.redirect("/mysite02/guestbook", request, response);
 	}
 
 }
