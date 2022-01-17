@@ -18,8 +18,8 @@ public class AddAction implements Action {
 		// TODO Auto-generated method stub
 		
 		String name = request.getParameter("name");
-		String password = request.getParameter("pass");
-		String message = request.getParameter("content");
+		String password = request.getParameter("password");
+		String message = request.getParameter("message");
 		
 		GuestbookVo vo = new GuestbookVo();
 //		new GuestbookDao().delete(no,password);
