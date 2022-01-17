@@ -1,3 +1,11 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
+<%
+	pageContext.setAttribute("newline","\n");
+%>
+
 <%@page import="com.poscoict.mysite.vo.GuestbookVo"%>
 <%@page import="java.util.List"%>
 <%@page import="com.poscoict.mysite.dao.GuestbookDao"%>
@@ -59,7 +67,7 @@
 								<td><a href="<%= request.getContextPath() %>/guestbook?a=deleteform&no=<%=vo.getNo() %>">삭제</a></td>
 							</tr>
 							<tr>
-							<td colspan=4><%= vo.getMessage().replaceAll("\n","<br/>") %> </td>
+							<td colspan=4>${fn.replace(vo.message,  newline, "<br/>")} </td>
 							<br>
 							</tr>
 						</table>

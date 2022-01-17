@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.poscoict.mysite.dao.UserDao;
+import com.poscoict.mysite.dao.find_emailDao;
 import com.poscoict.mysite.vo.UserVo;
 import com.poscoict.web.mvc.Action;
 import com.poscoict.web.util.MvcUtil;
@@ -24,6 +25,7 @@ public class UpdateFormAction implements Action {
 		
 		//접근 제어 코드
 		if(authUser == null) {
+			//로그인을 해야 회원정보 수정을 하게끔한다.
 			MvcUtil.redirect(request.getContextPath() + "/user?a=loginform", request, response);
 			return;// 끝나면 완료 하다록 한다.
 		}
@@ -31,6 +33,9 @@ public class UpdateFormAction implements Action {
 //		UserVo vo = new UserDao().findByNo(authUser.getNo()); //여기서 빼올 때 v패스워드 안가져 온다.
 		//forwarding user/updateform으로 보낸다.
 //		request.setAttribute("userVo", vo);
+		find_emailDao find_email = new find_emailDao();
+//		System.out.println(find_email);
+		request.setAttribute("email", find_email.find_email());
 		MvcUtil.forward("user/updateform", request, response);
 	}
 

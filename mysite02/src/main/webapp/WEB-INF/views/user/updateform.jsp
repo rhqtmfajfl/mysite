@@ -12,20 +12,21 @@
 		<div id="content">
 			<div id="user">
 
-				<form id="join-form" name="joinForm" method="post" action="<%= request.getContextPath() %>/user?a=join">
+				<form id="join-form" name="joinForm" method="post" action="<%= request.getContextPath() %>/user?a=update">
 				<input type = 'hidden' name = 'a' value='update'/>
+				
 					<label class="block-label" for="name">이름</label>
-					<input id="name" name="name" type="text" value="김길동">
+					<input id="name" name="name" type="text" value="">
+
 
 					<label class="block-label" for="email">이메일</label>
-					
-					<h4>Kimkildong@gamil.com</h4>
-					
-					<input id="email" name="email" type="text" value="">
+					<input id="email" name="email" value=<%= request.getAttribute("email") %> style="border:0 solid black;" readonly />
 					<input type="button" value="id 중복체크">
+					
 					
 					<label class="block-label">패스워드</label>
 					<input name="password" type="password" value="">
+					
 					
 					<fieldset>
 						<legend>성별</legend>
