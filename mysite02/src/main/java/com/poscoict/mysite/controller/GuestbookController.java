@@ -16,7 +16,6 @@ public class GuestbookController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
 		String actionName = request.getParameter("a");  //a 파라미터를 받아서 actionName에 넣어준다.
 		
 		ActionFactory af = new GuestbookActionFactory();  //af 라는 guestbookactionfactory 객체 만들고 

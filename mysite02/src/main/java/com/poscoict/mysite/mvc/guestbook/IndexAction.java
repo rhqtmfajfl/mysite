@@ -18,7 +18,7 @@ public class IndexAction implements Action {
 		
 		
 		request.setAttribute("list", dao.findAll());
-		
+		System.out.println(dao.findAll());
 		MvcUtil.forward("guestbook/index", request, response);  //guestbook/index 가 path가 된다. 
 		// 그러면 MvcUtil.java로 forward 되고
 	}
