@@ -9,11 +9,13 @@ import com.poscoict.mysite.vo.GuestbookVo;
 public class guestbookDaoTest {
 
 	public static void main(String[] args) {
-		testInsert();
-		testFindAll();
+//		testInsert();
+//		testFindAll();
 //		testdelete(6,"1234");
 //		testcount();
 	}
+	
+//	private static void 
 
 	private static void testcount() {
 		// TODO Auto-generated method stub

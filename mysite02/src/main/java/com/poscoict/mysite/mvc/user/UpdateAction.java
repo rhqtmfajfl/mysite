@@ -55,7 +55,7 @@ public class UpdateAction implements Action {
 		vo.setNo(no);
 		
 		boolean test = new UserDao().update(vo);
-		System.out.println(test ? "success" : "fail");
+		System.out.println(test ? "success update" : "fail update");
 		
 		MvcUtil.redirect(request.getContextPath(), request, response);
 

@@ -14,6 +14,7 @@ public class BoardVo {
 	//화면에 뿌릴려고 하는 것
 	private Long userNo;
 	private String userName;
+	
 	public Long getNo() {
 		return no;
 	}
