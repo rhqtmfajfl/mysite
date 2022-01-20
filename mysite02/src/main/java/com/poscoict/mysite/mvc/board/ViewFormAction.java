@@ -26,10 +26,15 @@ public class ViewFormAction implements Action {
 		
 		BoardHitDao bhd = new BoardHitDao();
 		
+		String user_no = request.getParameter("user_no");
+		
+		int user_no_to_int = Integer.parseInt(user_no);
+		
 		//앞에서 no를 가지고 온다.
 		String no = request.getParameter("no");
 
 		Long long_no = bhd.find_hit_no_long(no);
+		
 		
 		
 		
@@ -43,7 +48,7 @@ public class ViewFormAction implements Action {
 			return;// 끝나면 완료 하다록 한다.
 		}
 		
-
+//		bvo.setNo(dao.findall(no));
 		//1. session  있을떄 사용자 id + 글넘버
 		
 		//2. session 없을떄 글넘버
@@ -53,9 +58,9 @@ public class ViewFormAction implements Action {
 		request.setAttribute("findtitle", dao.findtitle(no));
 		request.setAttribute("findcontents", dao.findcontent(no));
 		
-		System.out.println(dao.findtitle(no));
-		System.out.println( dao.findcontent(no));
-
+//		System.out.println(dao.findtitle(no));
+//		System.out.println( dao.findcontent(no));
+		System.out.println(user_no);
 		System.out.println("여기서 hit 들어가는지 테스트");
 		
 //		int visitCount1 = 0;
@@ -90,11 +95,11 @@ public class ViewFormAction implements Action {
 			}
 //			visitCount++; // 1 쿠키 1 이 나온다.
 			
-			if(authUser==null) {
+			if(authUser.getNo()!=user_no_to_int) {
 				// 쿠키 쓰기(굽기) 쿠키 구워라고 나온다.
 			Cookie cookie = new Cookie(no, String.valueOf(hit_test));
 			cookie.setPath(request.getContextPath());
-			cookie.setMaxAge(60); //60 sec
+			cookie.setMaxAge(24*60*60); //60 sec
 			response.addCookie(cookie); // 이러면 set 쿠키로 나간다.
 			
 //			//화면 출력 Cookie: visitcount=1 f12에 net
@@ -120,7 +125,8 @@ public class ViewFormAction implements Action {
 				Long authUser_no = authUser.getNo();
 				request.setAttribute("board_list", dao.findno());
 				request.setAttribute("userno", authUser_no);
-
+				System.out.println(dao.findno());
+				System.out.println(authUser_no);
 				MvcUtil.forward("board/view", request, response);
 			}
 			

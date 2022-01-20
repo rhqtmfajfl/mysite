@@ -93,7 +93,8 @@ public class BoardDao {
 			
 			String sql =
 				"select user_no "
-				+ " from board ";
+				+ " from board";
+				
 			pstmt = conn.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery();

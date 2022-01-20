@@ -46,7 +46,7 @@
 					%>		
 					<tr>
 						<td><%= count-index++%></td>
-						<td style="text-align:left; padding-left:0px"><a href="${pageContext.servletContext.contextPath }/board?a=viewform&no=<%= vo.getNo()%>"><%= vo.getTitle()%></a></td>
+						<td style="text-align:left; padding-left:0px"><a href="${pageContext.servletContext.contextPath }/board?a=viewform&no=<%= vo.getNo()%>&user_no=<%= vo.getUserNo()%>"><%= vo.getTitle()%></a></td>
 						<td><%=vo.getUserName()%></td>
 						<td><%= vo.getHit() %></td>
 						<td><%=vo.getRegDate()%></td>
@@ -60,7 +60,7 @@
 					
 					<tr>
 						<td><%= count-index++%></td>
-						<td style="text-align:left; padding-left:0px"><a href="${pageContext.servletContext.contextPath }/board?a=viewform&no=<%= vo.getNo()%>"><%= vo.getTitle()%></a></td>
+						<td style="text-align:left; padding-left:0px"><a href="${pageContext.servletContext.contextPath }/board?a=viewform&no=<%= vo.getNo()%>&user_no=<%= vo.getUserNo()%>"><%= vo.getTitle()%></a></td>
 						<td><%=vo.getUserName()%></td>
 						<td><%= vo.getHit() %></td>
 						<td><%=vo.getRegDate()%></td>

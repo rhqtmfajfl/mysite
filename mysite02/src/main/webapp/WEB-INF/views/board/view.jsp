@@ -50,7 +50,7 @@
 						}else{
 
 					%>
-						<a href="${pageContext.request.contextPath }/board">글목록</a>					
+										
 					<%
 						}
 					%>
