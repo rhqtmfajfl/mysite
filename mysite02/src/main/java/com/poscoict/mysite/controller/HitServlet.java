@@ -44,7 +44,7 @@ public class HitServlet extends HttpServlet {
 //		
 			
 		if("modify".equals(from_modify)) {
-			int visitCount = 0;
+			int visitCount1 = 0;
 
 			// 쿠키 읽기
 			Cookie[] cookies = request.getCookies(); // 모든 쿠키는 받아와서 배열로 받는다.
@@ -52,23 +52,36 @@ public class HitServlet extends HttpServlet {
 			if (cookies != null && cookies.length > 0) {
 				for (Cookie cookie : cookies) {
 					if (COOKIE_NAME.equals(cookie.getName())) { // 첫번째 요청시 쿠키 네임이 안와서 안으로 안들어간다.
-						visitCount = Integer.parseInt(cookie.getValue());
+						visitCount1 = Integer.parseInt(cookie.getValue());
 						break;
 					}
 
 				}
 			}
 
-			visitCount++; // 1 쿠키 1 이 나온다.
+			visitCount1++; // 1 쿠키 1 이 나온다.
 
 			// 쿠키 쓰기(굽기) 쿠키 구워라고 나온다.
-			Cookie cookie = new Cookie(COOKIE_NAME, String.valueOf(visitCount));
+			Cookie cookie = new Cookie(COOKIE_NAME, String.valueOf(visitCount1));
 			cookie.setPath(request.getContextPath());
 
 			cookie.setMaxAge(24 * 60 * 60); // 1 day
 
 			response.addCookie(cookie); // 이러면 set 쿠키로 나간다.
 
+			
+			
+			
+			
+			Long no3 = bm.find_no(no);
+
+			bv.setNo(no3);
+			bv.setHit(visitCount1);
+			
+			boolean hit2 = new BoardHitDao().update_hit(bv);
+			System.out.println(hit2 ? "success hit" : "fail hit");
+			
+			MvcUtil.redirect(request.getContextPath()+"/board", request, response);
 			
 			ActionFactory af = new BoardActionFactory();
 			Action action = af.getAction(from_modify);
@@ -93,6 +106,9 @@ public class HitServlet extends HttpServlet {
 
 			visitCount++; // 1 쿠키 1 이 나온다.
 
+			
+			
+			
 			// 쿠키 쓰기(굽기) 쿠키 구워라고 나온다.
 			Cookie cookie = new Cookie(COOKIE_NAME, String.valueOf(visitCount));
 			cookie.setPath(request.getContextPath());
@@ -102,11 +118,15 @@ public class HitServlet extends HttpServlet {
 			response.addCookie(cookie); // 이러면 set 쿠키로 나간다.
 
 			
+			
+			
+			
 			Long no3 = bm.find_no(no);
 
 			bv.setNo(no3);
 			bv.setHit(visitCount);
 			
+			System.out.println(no3);
 			boolean hit2 = new BoardHitDao().update_hit(bv);
 			System.out.println(hit2 ? "success hit" : "fail hit");
 			

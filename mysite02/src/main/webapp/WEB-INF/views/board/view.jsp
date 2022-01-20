@@ -4,9 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%
-	String list = (String)request.getAttribute("view_list");
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,15 +25,10 @@
 					<tr>
 					
 						<td class="label">제목</td>
-							<%
-						
-						
-					%>		
-						<td><%= request.getAttribute("findtitle") %></td>
+				
+						<td>${ findtitle}</td>
 					</tr>
-					<%
-						
-					%>
+				
 					<tr>
 						<td class="label">내용</td>
 					
@@ -48,8 +41,20 @@
 					</tr>
 				</table>
 				<div class="bottom">
-					<a href="${pageContext.request.contextPath }/hit?no=<%=request.getAttribute("no") %>">글목록</a>
+					<a href="${pageContext.request.contextPath }/board">글목록</a>
+					<%
+						if(request.getAttribute("board_list")==request.getAttribute("userno")){
+					%>
 					<a href="${pageContext.request.contextPath }/board?a=modifyform&no=<%=request.getAttribute("no") %>">글수정</a>
+					<%
+						}else{
+
+					%>
+						<a href="${pageContext.request.contextPath }/board">글목록</a>					
+					<%
+						}
+					%>
+					
 				</div>
 			</div>
 		</div>

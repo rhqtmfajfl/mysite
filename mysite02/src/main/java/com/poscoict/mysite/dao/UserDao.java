@@ -5,7 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.poscoict.mysite.vo.BoardVo;
 import com.poscoict.mysite.vo.UserVo;
 
 public class UserDao {
@@ -61,6 +64,60 @@ public class UserDao {
 		return no;
 	}
 	
+	
+	public Long find_no(Long userno) {
+
+//		Long no = null;
+		Long no = (long)0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			
+			String sql = "select no from user where name = ? ";
+			//? 스트링 값으 바인드 하는 것이ㅏㄷ.
+			pstmt = conn.prepareStatement(sql);
+			
+		
+			pstmt.setLong(1, userno);
+			
+		
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				Long no1 = rs.getLong(1); //첫번째
+				
+				return no1;
+//				result = new UserVo();
+//				result.setNo(no);
+//				result.setName(name);
+			}
+			//
+			
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		} finally {
+			try {
+				if(rs !=null) {
+					rs.close();
+				}
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}		
+		
+		return no;
+	}
+	
+	
 //	public String find_name() {
 //
 ////		Long no = null;
@@ -112,6 +169,120 @@ public class UserDao {
 //		
 //		return no;
 //	}
+	
+	
+//	public UserVo findall() {
+//
+////		Long no = null;
+//		Long no = (long)0;
+//		Connection conn = null;
+//		PreparedStatement pstmt = null;
+//		
+//		ResultSet rs = null;
+//		try {
+//			conn = getConnection();
+//			
+//			String sql = "select no, name, email, password, gender, join_date"
+//					+ " from user where name = ? and password = ?";
+//			//? 스트링 값으 바인드 하는 것이ㅏㄷ.
+//			pstmt = conn.prepareStatement(sql);
+//			
+//		
+//			pstmt.setLong(1, no);
+//			pstmt.setString(2, name);
+//			pstmt.setString(3, email);
+//			pstmt.setString(4, password);
+//			pstmt.setString(5, gender);
+//			pstmt.setString(6, join_date);
+//
+//			
+//			rs = pstmt.executeQuery();
+//			if(rs.next()) {
+//				Long no1 = rs.getLong(1); //첫번째
+//				
+//				return no1;
+////				result = new UserVo();
+////				result.setNo(no);
+////				result.setName(name);
+//			}
+//			//
+//			
+//		} catch (SQLException e) {
+//			System.out.println("error:" + e);
+//		} finally {
+//			try {
+//				if(rs !=null) {
+//					rs.close();
+//				}
+//				if(pstmt != null) {
+//					pstmt.close();
+//				}
+//				if(conn != null) {
+//					conn.close();
+//				}
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}		
+//		
+//		return no;
+//	}
+	
+//	public List<UserVo> find_all() {
+//		List<UserVo> list = new ArrayList<>();
+//		
+//		Connection conn = null;
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//				
+//		try {
+//			conn = getConnection();
+//			
+//			String sql =
+//				"select no, name, email, password, gender, join_date "
+//				+" from user ";
+//			pstmt = conn.prepareStatement(sql);
+//			
+//			rs = pstmt.executeQuery();
+//			
+//			while(rs.next()) {
+//				Long no = rs.getLong(1);
+//				String title = rs.getString(2);
+//				String name = rs.getString(3);
+//				int hit = rs.getInt(4);
+//				String reg_date = rs.getString(5);
+//				
+//				UserVo vo = new UserVo();
+//				vo.setNo(no);
+//				vo.setTitle(title);
+//				vo.setUserName(name);
+//				vo.setHit(hit);
+//				vo.setRegDate(reg_date);
+//				
+//				list.add(vo);
+//			}
+//			
+//		} catch (SQLException e) {
+//			System.out.println("error:" + e);
+//		} finally {
+//			try {
+//				if(rs != null) {
+//					rs.close();
+//				}
+//				if(pstmt != null) {
+//					pstmt.close();
+//				}
+//				if(conn != null) {
+//					conn.close();
+//				}
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		
+//		return list;
+//	}
+	
 	
 	public boolean update(UserVo vo) {
 		boolean result = false;

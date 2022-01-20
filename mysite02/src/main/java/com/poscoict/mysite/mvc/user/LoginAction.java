@@ -44,12 +44,20 @@ public class LoginAction implements Action {
 		//redirect:/mysite
 		
 		HttpSession session = request.getSession(true); //업으면 만들어라고 하는것
+//		if(authUser.equals(null)) {
+//			session.setAttribute("authUser_no",0);
+//			//메인으로 가게
+//			MvcUtil.redirect(request.getContextPath(), request, response);
+//
+//		}else {
 		
-		session.setAttribute("authUser", authUser);  //위에 있는ㄴ authUser
+			session.setAttribute("authUser", authUser);  //위에 있는ㄴ authUser
+			//메인으로 가게
+			MvcUtil.redirect(request.getContextPath(), request, response);
+
+//		}
 		
-		//메인으로 가게
-		MvcUtil.redirect(request.getContextPath(), request, response);
-		
+				
 	}
 
 }

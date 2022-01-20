@@ -36,10 +36,13 @@
 						<th>&nbsp;</th>
 					</tr>	
 					
-						<%
+					<%
 						int count = list.size();
 						int index = 0;
+						
 						for(BoardVo vo : list){
+							if(vo.getUserNo()==request.getAttribute("userno")){
+	
 					%>		
 					<tr>
 						<td><%= count-index++%></td>
@@ -50,7 +53,22 @@
 						<td><a href="${pageContext.servletContext.contextPath }/board?a=delete&no=<%= vo.getNo()%>"  class="del" style='background-image: url("${pageContext.servletContext.contextPath }/assets/images/recycle.png")'>삭제</a></td>
 					</tr>
 					<%
+							}else{
+								
+					%>
+					
+					
+					<tr>
+						<td><%= count-index++%></td>
+						<td style="text-align:left; padding-left:0px"><a href="${pageContext.servletContext.contextPath }/board?a=viewform&no=<%= vo.getNo()%>"><%= vo.getTitle()%></a></td>
+						<td><%=vo.getUserName()%></td>
+						<td><%= vo.getHit() %></td>
+						<td><%=vo.getRegDate()%></td>
+					</tr>
+					<%
+							}
 						}
+					
 					%>
 					
 				

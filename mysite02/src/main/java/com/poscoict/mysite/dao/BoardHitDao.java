@@ -22,7 +22,112 @@ public class BoardHitDao extends BoardVo {
 		
 		return conn;
 	}
+	
+	public String find_hit_no(String no) {
 
+//		Long no = null;
+//		Long no = (long)0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			
+			String sql = "select no from board "
+					+ "where no = ?";
+			//? 스트링 값으 바인드 하는 것이ㅏㄷ.
+			pstmt = conn.prepareStatement(sql);
+			
+		
+			pstmt.setString(1, no);
+		
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				String no1 = rs.getString(1); //첫번째
+				
+				return no1;
+//				result = new UserVo();
+//				result.setNo(no);
+//				result.setName(name);
+			}
+			//
+			
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		} finally {
+			try {
+				if(rs !=null) {
+					rs.close();
+				}
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}		
+		
+		return no;
+	}
+
+	public Long find_hit_no_long(String no) {
+
+//		Long no = null;
+		Long no2 = (long)0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			
+			String sql = "select no from board "
+					+ "where no = ?";
+			//? 스트링 값으 바인드 하는 것이ㅏㄷ.
+			pstmt = conn.prepareStatement(sql);
+			
+		
+			pstmt.setString(1, no);
+		
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				Long no1 = rs.getLong(1); //첫번째
+				
+				return no1;
+//				result = new UserVo();
+//				result.setNo(no);
+//				result.setName(name);
+			}
+			//
+			
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		} finally {
+			try {
+				if(rs !=null) {
+					rs.close();
+				}
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}		
+		
+		return no2;
+	}
+	
+	
 	public boolean update_hit(BoardVo bv) {
 		boolean result = false;
 
