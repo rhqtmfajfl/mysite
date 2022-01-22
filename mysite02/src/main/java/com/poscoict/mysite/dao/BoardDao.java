@@ -81,6 +81,76 @@ public class BoardDao {
 		return conn;
 	}
 	
+	public Long find_gno() {
+		List<BoardVo> list = new ArrayList<>();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+				
+		try {
+			conn = getConnection();
+			
+			String sql =
+				"select user_no "
+				+ " from board";
+				
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+//				Long no1 = rs.getLong(1);
+//				String title = rs.getString(2);
+//				String content = rs.getString(3);
+//				int hit = rs.getInt(4);
+//				int g_no = rs.getInt(5);
+//				int o_no = rs.getInt(6);
+//				int depth = rs.getInt(7);
+//
+//				String reg_date = rs.getString(8);
+				Long user_no = rs.getLong(1);
+				
+//				BoardVo vo = new BoardVo();
+//				vo.setNo(no1);
+//				vo.setTitle(title);
+//				vo.setContents(content);
+//				vo.setHit(hit);
+//				vo.setGroupNo(g_no);
+//				vo.setOrderNo(o_no);
+//				vo.setDepth(depth);
+//
+//				vo.setRegDate(reg_date);
+//				vo.setUserNo(user_no);
+				
+				
+				
+				
+//				list.add(vo);
+				return user_no;
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		} finally {
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return null;
+	}
+	
 	public Long findno() {
 		List<BoardVo> list = new ArrayList<>();
 		
@@ -227,10 +297,10 @@ public class BoardDao {
 			conn = getConnection();
 			
 			String sql =
-				"select b.no, b.title, a.name, b.hit, b.reg_date, b.user_no "
+				"select b.no, b.title, b.contents, a.name, b.hit, b.g_no, b.o_no, b.depth, b.reg_date, b.user_no "
 				+ " from user a, board b  "
 				+ " where a.no = b.user_no "
-				+ " order by b.no desc, b.reg_date asc";
+				+ " order by b.g_no desc, b.o_no asc";
 			pstmt = conn.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery();
@@ -238,16 +308,24 @@ public class BoardDao {
 			while(rs.next()) {
 				Long no = rs.getLong(1);
 				String title = rs.getString(2);
-				String name = rs.getString(3);
-				int hit = rs.getInt(4);
-				String reg_date = rs.getString(5);
-				Long userno = rs.getLong(6);
+				String contentes = rs.getString(3);
+				String name = rs.getString(4);
+				int hit = rs.getInt(5);
+				int g_no = rs.getInt(6);
+				int o_no = rs.getInt(7);
+				int depth = rs.getInt(8);
+				String reg_date = rs.getString(9);
+				Long userno = rs.getLong(10);
 				
 				BoardVo vo = new BoardVo();
 				vo.setNo(no);
 				vo.setTitle(title);
+				vo.setContents(contentes);
 				vo.setUserName(name);
 				vo.setHit(hit);
+				vo.setGroupNo(g_no);
+				vo.setOrderNo(o_no);
+				vo.setDepth(depth);
 				vo.setRegDate(reg_date);
 				vo.setUserNo(userno);
 

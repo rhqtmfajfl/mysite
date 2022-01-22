@@ -142,7 +142,7 @@ public class BoardWriteDao {
 	public boolean insert_write(BoardVo bvo) {
 		boolean result = false;
 		int hit = 0;
-		int group_no = 1;
+//		int group_no = 1;
 		int order_no = 1;
 		int depth = 1;
 		
@@ -155,18 +155,18 @@ public class BoardWriteDao {
 			String sql =
 					" insert" +
 					" into board(no,title, contents, hit, g_no, o_no, depth,  reg_date, user_no)" +
-					"  values(null, ?, ?, ?, ?, ?, ?, now(), (select no from user where name = ?))";
+					"  values(null, ?, ?, ?, (select ifnull(max(g_no)+1,1) from board a), ?, ?, now(), (select no from user where name = ?))";
 			//? 스트링 값으 바인드 하는 것이ㅏㄷ.
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, bvo.getTitle());
 			pstmt.setString(2, bvo.getContents());
 			pstmt.setInt(3, hit);
-			pstmt.setInt(4, group_no);
-			pstmt.setInt(5, order_no);
-			pstmt.setInt(6, depth);
+		
+			pstmt.setInt(4, order_no);
+			pstmt.setInt(5, depth);
 
-			pstmt.setString(7, bvo.getUserName());
+			pstmt.setString(6, bvo.getUserName());
 			
 			int count = pstmt.executeUpdate();
 			result = count == 1;

@@ -42,9 +42,12 @@
 				</table>
 				<div class="bottom">
 					<a href="${pageContext.request.contextPath }/board">글목록</a>
+					<a href="${pageContext.request.contextPath }/board?a=addForm&no=<%=request.getAttribute("no") %>">답글 작성</a>
+					
 					<%
 						if(request.getAttribute("board_list")==request.getAttribute("userno")){
 					%>
+					
 					<a href="${pageContext.request.contextPath }/board?a=modifyform&no=<%=request.getAttribute("no") %>">글수정</a>
 					<%
 						}else{

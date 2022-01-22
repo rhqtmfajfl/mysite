@@ -58,6 +58,8 @@ public class ViewFormAction implements Action {
 		request.setAttribute("findtitle", dao.findtitle(no));
 		request.setAttribute("findcontents", dao.findcontent(no));
 		
+		request.setAttribute("view_user_no", user_no);
+		
 //		System.out.println(dao.findtitle(no));
 //		System.out.println( dao.findcontent(no));
 		System.out.println(user_no);

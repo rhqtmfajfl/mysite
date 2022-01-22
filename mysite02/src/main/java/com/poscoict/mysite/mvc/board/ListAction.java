@@ -39,6 +39,8 @@ public class ListAction implements Action {
 //		System.out.println(board_dao.find());
 		request.setAttribute("userno", authUser_no);
 		
+//		request.setAttribute("group_no", authUser_no);
+		
 //		System.out.println(user_dao.find_no(authUser_no) + "testsetsetset");
 		MvcUtil.forward("board/list", request, response);
 

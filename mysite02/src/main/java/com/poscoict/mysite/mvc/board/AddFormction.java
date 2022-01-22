@@ -7,23 +7,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.poscoict.mysite.dao.BoardWriteDao;
-import com.poscoict.mysite.vo.BoardVo;
 import com.poscoict.mysite.vo.UserVo;
 import com.poscoict.web.mvc.Action;
 import com.poscoict.web.util.MvcUtil;
 
-public class WriteAction implements Action {
+public class AddFormction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		/* 
+		 * 처음에 
+		 * g_no랑 같은데 첫 댓글을 누르면 o_no 와 depth 증가
+		 * 
+		 * no를 찾아서 그 no 에 맞는 board의 g_no를 알게된다면 
+		 * g_no랑 no랑 맞으면 o_no depth 1씩 증가
+		 * 
+		 */
 		
-		BoardWriteDao board_dao = new BoardWriteDao();
-		BoardVo bvo = new BoardVo();
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-
+		String no = request.getParameter("no");
+		String user_no = request.getParameter("user_no"); //이거 필요 없는것
+		
 		HttpSession session = request.getSession();
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		
@@ -34,19 +38,13 @@ public class WriteAction implements Action {
 			return;// 끝나면 완료 하다록 한다.
 		}
 		
-		String username = authUser.getName();		
-		bvo.setTitle(title);
-		bvo.setContents(content);
-		bvo.setUserName(username);
-		bvo.setGroupNo(0);
-//		board_dao.insert_write(bvo);
-		System.out.println(username);
-		boolean test = board_dao.insert_write(bvo); //insert 여기서 g_no를 넣는데
-		System.out.println(test ? "success" : "fail");
 		
-		MvcUtil.redirect(request.getContextPath()+"/board", request, response);
+		request.setAttribute("write_no", no);
+		request.setAttribute("add_user_no", user_no); //이거 필요없는것
 		
-//		MvcUtil.forward("user/updateform", request, response);  // redirect로 보내야 한다.
+		MvcUtil.forward("board/add", request, response);
+
+		
 	}
 
 }
