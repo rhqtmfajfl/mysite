@@ -77,6 +77,7 @@ public class AddAction implements Action {
 											 * set o_no = (o_no +1) 을 한다 이때 조건은
 											 * o_no > o_no 인데 
 											 */
+			
 			System.out.println("add로 들어왔는지 확인3");
 
 			reply_add.insert_write(boardvo);

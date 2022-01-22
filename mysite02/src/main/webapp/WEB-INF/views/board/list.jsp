@@ -47,15 +47,31 @@ List<BoardVo> list = (List<BoardVo>) request.getAttribute("board_list");
 					<tr>
 						<td><%=count - index++%></td>
 					
-					
+					<%
+						if(vo.getOrderNo()>1){
+					%>
+						<td style="text-align: left; padding-left: <%=(vo.getDepth()-1)*40%>px">
+						<img src = "${pageContext.servletContext.contextPath }/assets/images/click.png" style="width:10px; height:10px;" />
+						<a href="${pageContext.servletContext.contextPath }/board?a=viewform&no=<%= vo.getNo()%>&user_no=<%= vo.getUserNo()%>"><%=vo.getTitle()%></a>
+						</td>
+						<td><%=vo.getUserName()%></td>
+						<td><%=vo.getHit()%></td>
+						<td><%=vo.getRegDate()%></td>
+						
+					<%
+						}else{
+					%>
 						<td style="text-align: left; padding-left: <%=(vo.getDepth()-1)*40%>px">
 							<a href="${pageContext.servletContext.contextPath }/board?a=viewform&no=<%= vo.getNo()%>&user_no=<%= vo.getUserNo()%>"><%=vo.getTitle()%></a>
 						</td>
-					
 						
 						<td><%=vo.getUserName()%></td>
 						<td><%=vo.getHit()%></td>
 						<td><%=vo.getRegDate()%></td>
+						
+				<%
+						}
+				%>		
 						<%
 						if (vo.getUserNo() == request.getAttribute("userno")) {
 						%>
