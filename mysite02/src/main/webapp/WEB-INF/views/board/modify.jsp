@@ -21,12 +21,12 @@
 						</tr>
 						<tr>
 							<td class="label">제목</td>
-							<td><input type="text" name="title" value="<%= request.getAttribute("title") %>"></td>
+							<td><input type="text" name="title" value="${title}"></td>
 						</tr>
 						<tr>
 							<td class="label">내용</td>
 							<td>
-								<textarea id="content" name="content"><%= request.getAttribute("contents") %></textarea>
+								<textarea id="content" name="content">${contents}</textarea>
 							</td>
 						</tr>
 					</table>

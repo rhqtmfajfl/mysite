@@ -38,57 +38,44 @@ List<BoardVo> list = (List<BoardVo>) request.getAttribute("board_list");
 						<th>&nbsp;</th>
 					</tr>
 
-					<%
-					int count = list.size();
-					int index = 0;
-
-					for (BoardVo vo : list) {
-					%>
+					<c:forEach items="${board_list}" var="vo" varStatus="status" >
 					<tr>
-						<td><%=count - index++%></td>
+						<td>${status.count}</td>
+					<c:choose>
+						<c:when test="${vo.orderNo eq 1}">
+							<td style="text-align: left; padding-left: ${(vo.depth-1)*40}px">
+							<a href="${pageContext.servletContext.contextPath }/board?a=viewform&no=${vo.no}&user_no=${vo.userNo}">${vo.title}</a>
+							</td>
+							<td>${vo.userName}</td>
+							<td>${vo.hit}</td>
+							<td>${vo.regDate}</td>
+						</c:when>
+						<c:otherwise>
+								<td style="text-align: left; padding-left: ${(vo.depth-1)*40}px">
+								<img src = "${pageContext.servletContext.contextPath }/assets/images/click.png" style="width:10px; height:10px;" />
+								<a href="${pageContext.servletContext.contextPath }/board?a=viewform&no=${vo.no}&user_no=${vo.userNo}">${vo.title}</a>
+							</td>
+							<td>${vo.userName}</td>
+							<td>${vo.hit}</td>
+							<td>${vo.regDate}</td>
+						</c:otherwise>
+					</c:choose>
 					
-					<%
-						if(vo.getOrderNo()>1){
-					%>
-						<td style="text-align: left; padding-left: <%=(vo.getDepth()-1)*40%>px">
-						<img src = "${pageContext.servletContext.contextPath }/assets/images/click.png" style="width:10px; height:10px;" />
-						<a href="${pageContext.servletContext.contextPath }/board?a=viewform&no=<%= vo.getNo()%>&user_no=<%= vo.getUserNo()%>"><%=vo.getTitle()%></a>
-						</td>
-						<td><%=vo.getUserName()%></td>
-						<td><%=vo.getHit()%></td>
-						<td><%=vo.getRegDate()%></td>
+					
+						<c:choose>
+							<c:when test="${vo.userNo eq userno}">
+								<td><a
+								href="${pageContext.servletContext.contextPath }/board?a=delete&no=${vo.no}"
+								class="del"
+								style='background-image: url("${pageContext.servletContext.contextPath }/assets/images/recycle.png")'>삭제</a>
+								</td>
+							</c:when>
+						</c:choose>
 						
-					<%
-						}else{
-					%>
-						<td style="text-align: left; padding-left: <%=(vo.getDepth()-1)*40%>px">
-							<a href="${pageContext.servletContext.contextPath }/board?a=viewform&no=<%= vo.getNo()%>&user_no=<%= vo.getUserNo()%>"><%=vo.getTitle()%></a>
-						</td>
+						</tr>
+					</c:forEach>
 						
-						<td><%=vo.getUserName()%></td>
-						<td><%=vo.getHit()%></td>
-						<td><%=vo.getRegDate()%></td>
-						
-				<%
-						}
-				%>		
-						<%
-						if (vo.getUserNo() == request.getAttribute("userno")) {
-						%>
-						<td><a
-							href="${pageContext.servletContext.contextPath }/board?a=delete&no=<%= vo.getNo()%>"
-							class="del"
-							style='background-image: url("${pageContext.servletContext.contextPath }/assets/images/recycle.png")'>삭제</a></td>
-					</tr>
-					<%
-						
-						}
-					}
-					%>
-
-
 				</table>
-
 
 				<!-- pager 추가 -->
 				<div class="pager">
@@ -117,4 +104,5 @@ List<BoardVo> list = (List<BoardVo>) request.getAttribute("board_list");
 		<c:import url="/WEB-INF/views/includes/footer.jsp" />
 	</div>
 </body>
+</html>
 </html>

@@ -34,7 +34,7 @@
 					
 						<td>
 							<div class="view-content">
-								<%= request.getAttribute("findcontents") %>
+								${findcontents}
 							</div>
 						</td>
 					
@@ -42,21 +42,23 @@
 				</table>
 				<div class="bottom">
 					<a href="${pageContext.request.contextPath }/board">글목록</a>
-					<a href="${pageContext.request.contextPath }/board?a=addForm&no=<%=request.getAttribute("no") %>">답글 작성</a>
+					<a href="${pageContext.request.contextPath }/board?a=addForm&no=${no}">답글 작성</a>
 					
-					<%
-						if(request.getAttribute("board_list")==request.getAttribute("userno")){
-					%>
 					
-					<a href="${pageContext.request.contextPath }/board?a=modifyform&no=<%=request.getAttribute("no") %>">글수정</a>
-					<%
-						}else{
-
-					%>
-										
-					<%
-						}
-					%>
+						<c:choose>
+							<c:when test="${board_list eq userno}">
+								<a href="${pageContext.request.contextPath }/board?a=modifyform&no=${no}">글수정</a>
+							
+							</c:when>
+							<c:otherwise>
+							
+							</c:otherwise>
+						</c:choose>
+					
+					
+					
+					
+					
 					
 				</div>
 			</div>

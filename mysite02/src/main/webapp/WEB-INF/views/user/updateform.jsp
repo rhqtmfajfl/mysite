@@ -15,7 +15,7 @@
 		<div id="content">
 			<div id="user">
 
-				<form id="join-form" name="joinForm" method="post" action="<%= request.getContextPath() %>/user?a=update">
+				<form id="join-form" name="joinForm" method="post" action="${pageContext.request.contextPath }/user?a=update">
 				<input type = 'hidden' name = 'a' value='update'/>
 				
 					<label class="block-label" for="name">이름</label>
@@ -23,7 +23,7 @@
 
 
 					<label class="block-label" for="email">이메일</label>
-					<input id="email" name="email" value=<%= request.getAttribute("email") %> style="border:0 solid black;" readonly />
+					<input id="email" name="email" value="${email}" style="border:0 solid black;" readonly />
 					<input type="button" value="id 중복체크">
 					
 					

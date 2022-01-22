@@ -15,7 +15,7 @@
 	
 		<div id="content">
 			<div id="board">
-				<form class="board-form" method="post" action="${pageContext.request.contextPath }/board?a=write&no=<% request.getParameter("no");%>">
+				<form class="board-form" method="post" action="${pageContext.request.contextPath }/board?a=write&no=<%= request.getParameter("no")%>">
 					<input type = "hidden" name = "a" value="write">
 					<table class="tbl-ex">
 						<tr>
