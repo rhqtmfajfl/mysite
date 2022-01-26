@@ -1,5 +1,5 @@
 package com.poscoict.mysite.vo;
-
+//test
 public class BoardVo {
 	private Long no;
 	private String title;

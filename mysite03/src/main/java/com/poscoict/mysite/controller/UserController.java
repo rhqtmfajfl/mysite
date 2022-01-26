@@ -111,7 +111,8 @@ public class UserController {  //userservice가 di 해준다.
 		
 		userVo.setNo(authUser.getNo());
 		userService.updateUser(userVo);
-	
+		authUser.setName(userVo.getName());
+		
 		return "redirect:/user/update";
 	}
 	
