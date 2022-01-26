@@ -25,7 +25,7 @@
 					
 						<td class="label">제목</td>
 				
-						<td>${ findtitle}</td>
+						<td>${ boardVo.title}</td>
 					</tr>
 				
 					<tr>
@@ -33,7 +33,7 @@
 					
 						<td>
 							<div class="view-content">
-								${findcontents}
+								${fn:replace(boardVo.contents, newLine, "<br>")}
 							</div>
 						</td>
 					
@@ -41,12 +41,12 @@
 				</table>
 				<div class="bottom">
 					<a href="${pageContext.request.contextPath }/board">글목록</a>
-					<a href="${pageContext.request.contextPath }/board?a=addForm&no=${no}">답글 작성</a>
+					<a href="${pageContext.request.contextPath }/board/addform/${boardVo.no}">답글 작성</a>
 					
 					
 						<c:choose>
 							<c:when test="${board_list eq userno}">
-								<a href="${pageContext.request.contextPath }/board?a=modifyform&no=${no}">글수정</a>
+								<a href="${pageContext.request.contextPath }/board/modifyform/${boardVo.no}">글수정</a>
 							
 							</c:when>
 							<c:otherwise>

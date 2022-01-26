@@ -9,12 +9,9 @@
 	</parent>
 	<artifactId>mysite03</artifactId>
 	<packaging>war</packaging>
-	
-	
-	
+
 	<properties>
-	
-		<org.springframework-version>4.3.0.RELEASE</org.springframework-version>
+		<org.springframework-version>4.3.4.RELEASE</org.springframework-version>
 	</properties>
 
 	<dependencies>
@@ -39,23 +36,42 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 		
+		<!-- Spring JDBC -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
+		<!-- MyBatis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.2.0</version>
+		</dependency>
 		
-		<!--   이거 나중에 이름 넣기 -->
+		<!-- Common DBCP -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+		
+		<!-- MySQL Connector -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.17</version>
 		</dependency>
 	
-		
-		</dependencies>
-	
+	</dependencies>
 
 	<build>
 		<finalName>mysite03</finalName>
-		
-	</build>
-	
-	
-	
+	</build>	
 </project>

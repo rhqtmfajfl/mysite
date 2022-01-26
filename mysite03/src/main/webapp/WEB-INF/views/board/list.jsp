@@ -40,7 +40,7 @@
 					<c:choose>
 						<c:when test="${vo.orderNo eq 1}">
 							<td style="text-align: left; padding-left: ${(vo.depth-1)*40}px">
-							<a href="${pageContext.servletContext.contextPath }/board?a=viewform&no=${vo.no}&user_no=${vo.userNo}">${vo.title}</a>
+							<a href="${pageContext.servletContext.contextPath }/board/view/${vo.no}">${vo.title}</a>
 							</td>
 							<td>${vo.userName}</td>
 							<td>${vo.hit}</td>
@@ -49,7 +49,7 @@
 						<c:otherwise>
 								<td style="text-align: left; padding-left: ${(vo.depth-1)*40}px">
 								<img src = "${pageContext.servletContext.contextPath }/assets/images/click.png" style="width:10px; height:10px;" />
-								<a href="${pageContext.servletContext.contextPath }/board?a=viewform&no=${vo.no}&user_no=${vo.userNo}">${vo.title}</a>
+								<a href="${pageContext.servletContext.contextPath }/board/view/${vo.no}">${vo.title}</a>
 							</td>
 							<td>${vo.userName}</td>
 							<td>${vo.hit}</td>
@@ -59,9 +59,9 @@
 					
 					
 						<c:choose>
-							<c:when test="${vo.userNo eq userno}">
+							<c:when test="${not empty authUser && authUser.no == vo.userNo }">
 								<td><a
-								href="${pageContext.servletContext.contextPath }/board?a=delete&no=${vo.no}"
+								href="${pageContext.servletContext.contextPath }/board/delete/${vo.no}"
 								class="del"
 								style='background-image: url("${pageContext.servletContext.contextPath }/assets/images/recycle.png")'>삭제</a>
 								</td>
@@ -89,7 +89,7 @@
 
 				<div class="bottom">
 					<a
-						href="${pageContext.servletContext.contextPath}/board?a=writeform"
+						href="${pageContext.servletContext.contextPath}/board/write"
 						id="new-book">글쓰기</a>
 				</div>
 			</div>
