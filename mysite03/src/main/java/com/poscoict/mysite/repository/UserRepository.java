@@ -11,6 +11,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StopWatch;
 
 import com.poscoict.mysite.vo.UserVo;
 
@@ -70,18 +71,26 @@ public class UserRepository {
 	}
 
 	public UserVo findByEmailAndPassword(String email, String password) {
+	
+		
+		
 		Map<String, String> map = new HashMap<>();
 		map.put("email", email);
 		map.put("password", password);
 		
-		return sqlSession.selectOne("user.findByEmailAndPassword", map);
+		
+		//속도를 제려면 코드 변경 로그인할때 속도
+		return  sqlSession.selectOne("user.findByEmailAndPassword", map);
+		
+	
+		
 	}	
 	
 	private Connection getConnection() throws SQLException {
 		Connection conn = null;
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/webdb?characterEncoding=UTF-8&serverTimezone=UTC";
+			Class.forName("org.mariadb.jdbc.Driver");
+			String url = "jdbc:mysql://192.168.0.58:3307/webdb?characterEncoding=UTF-8&serverTimezone=UTC";
 			conn = DriverManager.getConnection(url, "webdb", "webdb");
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버 로딩 실패:" + e);

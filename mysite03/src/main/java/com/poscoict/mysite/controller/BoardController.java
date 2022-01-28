@@ -105,6 +105,7 @@ public class BoardController {
 		vo.setTitle(title);
 		vo.setContents(content);
 		vo.setUserName(username);
+		vo.setUserNo(authUser.getNo());
 		boardService.addContents(vo);
 		
 		return "redirect:/board";
