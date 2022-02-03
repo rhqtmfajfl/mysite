@@ -1,7 +1,5 @@
 package com.poscoict.mysite.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -9,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,14 +23,14 @@ public class UserController {  //userservice가 di 해준다.
 	private UserService userService;
 	
 	@RequestMapping(value="/join", method=RequestMethod.GET)  //여기는 join이 있는 곳으로 이동
-	public String join() {  //여기서 join을 join form을 보여 준면 된다.
+	public String join(@ModelAttribute UserVo userVo) {  //여기서 join을 join form을 보여 준면 된다.
 		return "user/join"; // get으로 받으면 단지 화면 이동이므로 user/join만 해주면 된다.
 		// WEB-INF/views/user/join이다.
 	}
 	
 	@RequestMapping(value="/join", method=RequestMethod.POST) //여기가 join.jsp에서 form에 의해 안의 name 값들이 보내진다.
-	public String join(@Valid UserVo userVo, BindingResult result, Model model) {    //vo 객체의 값들을 방니딩한 결과
-		
+	public String join(@ModelAttribute @Valid UserVo userVo, BindingResult result, Model model) {    //vo 객체의 값들을 방니딩한 결과
+		//
 		
 		if(result.hasErrors()) { //에러가 있는지 없는지 확인
 //			List<ObjectError> list = result.getAllErrors();
@@ -41,13 +39,15 @@ public class UserController {  //userservice가 di 해준다.
 //				System.out.println(error);
 //			}
 			
+//			model.addAttribute("uservo",userVo);  //이때 뒤의 userVo는 넘어오는게 아니다.  앞의 userVo가 넘어간다.
+			// 위에서 @ModelAttribute를 해주면  위의 addAttribute를 해줄 필요가 없다. 그리고 위에서 vo가 넘어간는게 아니라 UserVo 타입이 넘어 간다.
 			model.addAllAttributes(result.getModel());  //map으로 되어있다.
 			
 			return "user/join"; 
 		}
 		userService.join(userVo);  //userService에서 join을 사용한것 그래서 
 		// return으로 보내 준다.
-		System.out.println(userVo);  //화면에서 이쪽으로 들어오고
+//		System.out.println(userVo);  //화면에서 이쪽으로 들어오고
 		return "redirect:/user/joinsuccess";  //redirect 해주면 WEB-INF/views이다
 	}
 	
