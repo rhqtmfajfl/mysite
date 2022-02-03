@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 public @interface Auth {
 //	public String values() default "USER";
 //	public String role();
-	public String role() default "USER";
+	public String role() default "USER";  //defualt가 USER이다.
 	
 //	public boolean test() default false; 
 }

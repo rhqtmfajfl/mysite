@@ -39,7 +39,7 @@
 					</p>
 					
 					
-					<label class="block-label" for="email"><spring:message code="user.join.label.password" /></label>
+					<label class="block-label" for="email">이메일</label>
 					<form:input path="email" />
 										
 					<input type="button" value="id 중복체크">
@@ -50,7 +50,7 @@
 					
 					
 					
-					<label class="block-label">패스워드</label>
+					<label class="block-label"><spring:message code="user.join.label.password" /></label>
 					<form:password path="password" />
 					
 					<p style="text-align:left; padding-left:0; color:#f00">
@@ -60,8 +60,8 @@
 					
 					<fieldset>
 						<legend>성별</legend>
-						<form:radiobutton path="gender" balue="female" label="여" />
-						<form:radiobutton path="gender" balue="male" label="남" />
+						<form:radiobutton path="gender" value="female" label="여" />
+						<form:radiobutton path="gender" value="male" label="남" />
 						
 					</fieldset>
 					
