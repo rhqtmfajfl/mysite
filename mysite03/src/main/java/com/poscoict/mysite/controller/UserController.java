@@ -1,10 +1,15 @@
 package com.poscoict.mysite.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,7 +31,20 @@ public class UserController {  //userservice가 di 해준다.
 	}
 	
 	@RequestMapping(value="/join", method=RequestMethod.POST) //여기가 join.jsp에서 form에 의해 안의 name 값들이 보내진다.
-	public String join(UserVo userVo) {  
+	public String join(@Valid UserVo userVo, BindingResult result, Model model) {    //vo 객체의 값들을 방니딩한 결과
+		
+		
+		if(result.hasErrors()) { //에러가 있는지 없는지 확인
+//			List<ObjectError> list = result.getAllErrors();
+//			
+//			for(ObjectError error : list) {
+//				System.out.println(error);
+//			}
+			
+			model.addAllAttributes(result.getModel());  //map으로 되어있다.
+			
+			return "user/join"; 
+		}
 		userService.join(userVo);  //userService에서 join을 사용한것 그래서 
 		// return으로 보내 준다.
 		System.out.println(userVo);  //화면에서 이쪽으로 들어오고
