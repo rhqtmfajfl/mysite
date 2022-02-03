@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.poscoict.fileupload.service.FileUploadService;
+import com.poscoict.mysite.service.FileUploadService;
 
 @Controller
 public class FileUploadController {

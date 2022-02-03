@@ -8,11 +8,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 @Retention(RUNTIME)
-@Target({ TYPE, METHOD })
+@Target({TYPE, METHOD})
 public @interface Auth {
-//	public String values() default "USER";
-//	public String role();
-	public String role() default "USER";  //defualt가 USER이다.
-	
-//	public boolean test() default false; 
+	// public String value() default "USER";
+	public String role() default "USER";
+	//public boolean test() default false;
 }

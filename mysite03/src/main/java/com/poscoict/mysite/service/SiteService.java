@@ -13,9 +13,15 @@ public class SiteService {
 	@Autowired
 	private SiteRepository siteRepository;
 	
+	public SiteVo select() {
+		
+		
+		return siteRepository.select();
+	}
+	
 	public boolean update(SiteVo vo) {
 		
 		
-		return true;
+		return siteRepository.update(vo);
 	}
 }

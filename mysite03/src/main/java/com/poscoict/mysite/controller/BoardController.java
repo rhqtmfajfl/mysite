@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.poscoict.mysite.security.Auth;
+import com.poscoict.mysite.security.AuthUser;
 import com.poscoict.mysite.service.BoardService;
 import com.poscoict.mysite.vo.BoardVo;
 import com.poscoict.mysite.vo.UserVo;
@@ -30,9 +31,7 @@ public class BoardController {
 		
 		model.addAttribute("board_list", map);
 	
-//		System.out.println("asdfasdfasdf");
-//		System.out.println(map);
-//		System.out.println("asdfasdfasdf");
+
 		return "/board/list";
 	}
 	
@@ -47,29 +46,12 @@ public class BoardController {
 		return "board/view";
 	}
 	
-//	@RequestMapping(value="/list", method=RequestMethod.POST)
-//	public String list(HttpSession session, Model model) {
-////		List<BoardVo> list = new BoardRepository().find();
-//		
-//		
-//		Map<String, Object> map = boardService.getContentsList();
-//		model.addAttribute("board_list", map);
-//
-//		return "redirect:/board/list";
-//	}
+
 	
+	@Auth
 	@RequestMapping(value="/delete/{no}", method=RequestMethod.GET)
-	public String delete(HttpSession session, @PathVariable("no") Long no) {
+	public String delete(UserVo authUser, HttpSession session, @PathVariable("no") Long no) {
 		
-		/* access control*/
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		if(authUser == null) {
-			return "redirect:/";
-		}
-		System.out.println("no : " + no + ", authUser : " + authUser.getNo());
-		System.out.println("no : " + no + ", authUser : " + authUser.getNo());
-		System.out.println("no : " + no + ", authUser : " + authUser.getNo());
-		System.out.println("no : " + no + ", authUser : " + authUser.getNo());
 
 		System.out.println("no : " + no + ", authUser : " + authUser.getNo());
 		boardService.deleteContents(no, authUser.getNo());
@@ -77,27 +59,21 @@ public class BoardController {
 		return "redirect:/board";
 	}
 	
+	@Auth
 	@RequestMapping(value="/write", method=RequestMethod.GET)
-	public String write_form(HttpSession session) {
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		if(authUser == null) {
-			return "user/login";
-		}
+	public String write_form(UserVo authUser, HttpSession session) {
+
 		
 		return "board/write";
 	}
 	
 	@Auth
 	@RequestMapping(value="/write", method=RequestMethod.POST)
-	public String write(HttpSession session,
+	public String write(@AuthUser UserVo authUser, HttpSession session,
 			@RequestParam(value="title", required=true, defaultValue="") String title,
 			@RequestParam(value="content", required=true, defaultValue="") String content) {
 		
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		if(authUser == null) {
-			return "user/login";
-		}
-		
+
 		String username = authUser.getName();
 		
 		BoardVo vo = new BoardVo();
@@ -106,23 +82,17 @@ public class BoardController {
 		vo.setContents(content);
 		vo.setUserName(username);
 		vo.setUserNo(authUser.getNo());
+
 		boardService.addContents(vo);
 		
 		return "redirect:/board";
 	}
 	
+	@Auth
 	@RequestMapping(value="/modifyform/{no}", method=RequestMethod.GET)
-	public String modify(HttpSession session,
+	public String modify(UserVo authUser, HttpSession session,
 			@PathVariable("no") Long no, Model model) {
-		/* access control */
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		if(authUser == null) {
-			return "user/login";
-		}
-		
-//		BoardVo modify_no = new BoardVo();
-		
-//		modify_no.setNo(no);
+
 		
 		//여기서 사용자 no를 가지고 와서  find로 찾느다.
 		BoardVo update_view = boardService.getContents_modify(no);
@@ -152,35 +122,30 @@ public class BoardController {
 	
 	//댓글 작성
 	
+	@Auth
 	@RequestMapping(value="/addform/{no}", method=RequestMethod.GET)
-	public String addform(HttpSession session,
+	public String addform(UserVo authUser, HttpSession session,
 			@PathVariable("no") Long no, Model model) {
-		/* access control */
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		if(authUser == null) {
-			return "user/login";
-		}
+
 		
 		BoardVo reply_boardVo = boardService.getContents(no);
 //no, title, contents, g_no as groupNo, o_no as orderNo, depth, user_no as userNo
 		//이값을 리턴해준다. 그리고 이값을 boardVo라는 객체로 정해주고 view에 보내준다.
 		model.addAttribute("reply_boardVo", reply_boardVo);
 
-//		System.out.println("no : " + reply_boardVo.getNo());
 		return "board/add";
 	}
 	
+	@Auth
 	@RequestMapping(value="/add/{no}", method=RequestMethod.POST)
-	public String add(HttpSession session,
+	public String add( UserVo authUser,
+			HttpSession session,
 			@PathVariable("no") Long no,
 			@RequestParam(value="title", required=true, defaultValue="") String title,
 			@RequestParam(value="content", required=true, defaultValue="") String content) {
 		
+
 		
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		if(authUser == null) {
-			return "user/login";
-		}
 		BoardVo reply_boardVo = boardService.getContents(no);
 		
 		BoardVo vo = new BoardVo();
