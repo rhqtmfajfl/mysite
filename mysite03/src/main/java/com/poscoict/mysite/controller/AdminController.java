@@ -18,9 +18,17 @@ import com.poscoict.mysite.vo.SiteVo;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+	
+	//HttpServletSession을 사용하지 않기 위해서
+//	@ 여기서 ServletContext를 사용한다.
+	//그리고 밑에 update 부분에서 강사님걸 사용해서 좀더 간단하게 만든다.
+	
+	
+	
 	@Autowired
 	private SiteService siteService;
-	@Autowired
+	
+	@Autowired  //여기서 Autowired를 한번더 써줘야 한다.
 	private FileUploadService fileUploadService;
 	
 	@RequestMapping({"","/main"})
@@ -61,7 +69,7 @@ public class AdminController {
 			
 			vo.setTitle(title);
 			vo.setWelcome(welcomeMessage);
-			vo.setDescription(description);
+//			vo.setDescription(description);
 
 //			System.out.println("multi입니다. : " + fileUploadService.restore(multipartFile));
 			vo.setProfile(fileUploadService.restore(multipartFile));

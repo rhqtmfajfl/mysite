@@ -9,18 +9,37 @@
 	</parent>
 	<artifactId>mysite02</artifactId>
 	<packaging>war</packaging>
-
+	
 	<dependencies>
-		<!-- JDBC Maria Driver -->
-
+		<!-- JSTL -->	
 		<dependency>
-			<groupId>org.mariadb.jdbc</groupId>
-			<artifactId>mariadb-java-client</artifactId>
-			<version>2.7.4</version>
+		    <groupId>jstl</groupId>
+		    <artifactId>jstl</artifactId>
+		    <version>1.2</version>
 		</dependency>
-
+			
+		<!-- MariaDB JDBC Driver -->
+		<dependency>
+		    <groupId>org.mariadb.jdbc</groupId>
+		    <artifactId>mariadb-java-client</artifactId>
+		    <version>2.7.4</version>
+		</dependency>
+		
+		<!-- servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.0</version>
+			<scope>provided</scope>
+		</dependency>				
 	</dependencies>
-
+	
 	<build>
 		<finalName>mysite02</finalName>
 		<plugins>
@@ -34,7 +53,7 @@
 					<username>admin</username>
 					<password>manager</password>
 				</configuration>
-			</plugin>
+			</plugin>	
 		</plugins>
-	</build>
+	</build>	
 </project>
