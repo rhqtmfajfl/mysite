@@ -13,7 +13,7 @@ import com.poscoict.mysite.service.FileUploadService;
 import com.poscoict.mysite.service.SiteService;
 import com.poscoict.mysite.vo.SiteVo;
 
-@Auth(role = "ADMIN") // 여기 컨트롤러의 모든 것은 인증 받아라
+@Auth(role = "ADMIN") // 여기 컨트롤러의 모든 것은 인증 받아라  //여기서 권한을 인증하고 할 수 있다.
 //@Auth(role="admin")
 @Controller
 @RequestMapping("/admin")
