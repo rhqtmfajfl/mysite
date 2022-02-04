@@ -61,7 +61,7 @@ public class AdminController {
 			
 			vo.setTitle(title);
 			vo.setWelcome(welcomeMessage);
-		
+			vo.setDescription(description);
 
 //			System.out.println("multi입니다. : " + fileUploadService.restore(multipartFile));
 			vo.setProfile(fileUploadService.restore(multipartFile));
