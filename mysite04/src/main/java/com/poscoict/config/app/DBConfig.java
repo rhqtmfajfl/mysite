@@ -30,7 +30,9 @@ public class DBConfig {
 		
 		//튜닝값
 		dataSource.setInitialSize(env.getProperty("jdbc.initialSize", Integer.class));  // "" 이거는 string 값 리턴하는 것
-		dataSource.setMaxActive(env.getProperty("jdbc.maxActive", Integer.class));  //아무리 많이 요청 들어와도 100개이사 만들지 마라
+		dataSource.setMaxActive(env.getProperty("jdbc.maxActive", Integer.class));  
+		// 최대로 100까지 들어오게 Integer로 만들어 두었다.
+		//아무리 많이 요청 들어와도 100개이사 만들지 마라
 		
 		
 		return dataSource;
