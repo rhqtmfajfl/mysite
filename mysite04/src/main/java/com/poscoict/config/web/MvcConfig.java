@@ -15,28 +15,25 @@ import org.springframework.web.servlet.view.JstlView;
 public class MvcConfig extends WebMvcConfigurerAdapter {  //WebMvcConfigurerAdapter여기에 들어있다.	<!-- 서블릿 컨테이너(tomcat)의 DefaultServlet 위임(delegate) Handler -->
 // WebMvcConfigurerAdapter durldp 
 
-	//view Resolver 설정
+	
+	//view Resolver 설정		
 	@Bean
-	public ViewResolver viewResolver() {
-		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-		viewResolver.setViewClass(JstlView.class);  //		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" /> 이부분
-		viewResolver.setPrefix("/WEB-INF/views/"); //		<property name="prefix" value="/WEB-INF/views/"/>
-		viewResolver.setSuffix(".jsp"); //		<property name="suffix" value=".jsp"/>
-
+		public ViewResolver viewResolver() {
+			InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+			viewResolver.setViewClass(JstlView.class); //		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" /> 이부분
+			viewResolver.setPrefix("/WEB-INF/views/");//		<property name="prefix" value="/WEB-INF/views/"/>
+			viewResolver.setSuffix(".jsp");//		<property name="suffix" value=".jsp"/>
+			
+			return viewResolver;
+		}
 		
-		return viewResolver;
-	}
-
-
-	//Message Converter
-	
-	
-	//DefaultServlet 위임(delegate) Handler
-	@Override
-	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-
-		configurer.enable();
-	}
+		// Message Converter
+		
+//		//DefaultServlet 위임(delegate) Handler
+		@Override
+		public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+			configurer.enable();
+		}
 	
 	
 }

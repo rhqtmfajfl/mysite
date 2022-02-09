@@ -135,4 +135,16 @@ public class UserController {  //userservice가 di 해준다.
 	}
 	
 	
+	@RequestMapping(value="/auth", method = RequestMethod.POST)
+	public void auth() {
+		
+	}
+	
+	//껍데기를 만들어 놔야 컨트로러로 가는 길을 막는다 Handler가 있어야 
+	//아니면 설정 순서에 따라
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	public void logout() {
+		
+	}
+	
 }
