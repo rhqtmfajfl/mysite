@@ -7,9 +7,9 @@
 		<artifactId>mysite</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>mysite04</artifactId>
+	<artifactId>mysite05</artifactId>
 	<packaging>war</packaging>
-
+	
 	<properties>
 		<org.springframework-version>4.3.4.RELEASE</org.springframework-version>
 		<jcloverslf4j.version>1.7.6</jcloverslf4j.version>
@@ -144,7 +144,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>mysite04</finalName>
+		<finalName>mysite05</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -152,11 +152,12 @@
 				<version>1.1</version>
 				<configuration>
 					<url>http://127.0.0.1:8080/manager/text</url>
-					<path>/mysite04</path>
+					<path>/mysite05</path>
 					<username>admin</username>
 					<password>manager</password>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+	
 </project>
