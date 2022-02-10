@@ -44,12 +44,12 @@ public class MySiteWebApplicationInitializer extends AbstractAnnotationConfigDis
 	}
 
 
-//	@Override
-//	protected void customizeRegistration(Dynamic registration) {
-//
-//		registration.setInitParameter("throwExceptionIfNoHandlerFound", "true");  //url에 매핑되는 핸들러가 없으면  throwException으로 404에러 발생
-	// //NoHandlerFound Exception이 발생한ㄷ.
-//	}
+	@Override
+	protected void customizeRegistration(Dynamic registration) {
+
+		registration.setInitParameter("throwExceptionIfNoHandlerFound", "true");  //url에 매핑되는 핸들러가 없으면  throwException으로 404에러 발생
+	 //NoHandlerFound Exception이 발생한ㄷ.
+	}
 	
 	
 
