@@ -36,8 +36,7 @@ public class FileuploadConfig extends WebMvcConfigurerAdapter {
 		.addResourceLocations("file:" + env.getProperty("fileupload.uploadLocation"));		
 		
 		registry.addResourceHandler(env.getProperty("assets.resourceMapping"))
-		.addResourceLocations("classpath:" + env.getProperty("assets.resourceLocation"))
-		.setCachePeriod(60 * 60 * 24 * 365);
+		.addResourceLocations("classpath:" + env.getProperty("assets.resourceLocation"));
 		
 	}
 }

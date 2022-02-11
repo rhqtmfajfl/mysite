@@ -13,6 +13,7 @@ import com.poscoict.mysite.security.AuthInterceptor;
 import com.poscoict.mysite.security.AuthUserHandlerMethodArgumentResolver;
 import com.poscoict.mysite.security.LoginInterceptor;
 import com.poscoict.mysite.security.LogoutInterceptor;
+import com.poscoict.mysite.security.SiteInterceptor;
 
 
 @Configuration
@@ -54,6 +55,11 @@ public class SecurityConfig extends WebMvcConfigurerAdapter {
 		public HandlerInterceptor authInterceptor() {
 			return new AuthInterceptor();
 		}
+		
+		@Bean
+		public HandlerInterceptor siteInterceptor() {
+		    return new SiteInterceptor();
+		}
 
 		
 		/*
@@ -84,6 +90,12 @@ public class SecurityConfig extends WebMvcConfigurerAdapter {
 				.excludePathPatterns("/user/auth")
 				.excludePathPatterns("/user/logout")
 				.excludePathPatterns("/asset/**");
+			
+			  registry
+		      .addInterceptor(siteInterceptor())//			<bean class="com.poscoict.mysite.security.SiteInterceptor"/>
+		      .addPathPatterns("/**");//	
+			  
+			  
 		}
 	
 	
