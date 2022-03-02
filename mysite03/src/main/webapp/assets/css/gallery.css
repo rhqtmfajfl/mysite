@@ -1,0 +1,63 @@
+@charset "UTF-8";
+@import "mysite.css";
+
+#gallery{ margin:20px auto;	width:540px; }
+
+#gallery{
+
+	display:block;
+	
+}
+
+#gallery-header{
+	display:block;
+}
+
+#gallery ul li{
+	position:relative;
+	
+	float:left;
+    width: 100px;
+    height: 100px;
+	display: block;
+	margin:10px;
+	padding:10px;
+	
+
+}
+
+#gallery ul li a.image{
+	
+	display:block;
+	width:100px;
+	height:100px;
+	background-size: contain; 
+	background-repeat: no-repeat;
+	background-position:center;
+	
+}
+
+
+#gallery h1{
+	width:100;
+	float:left;
+	
+}
+
+#gallery #upload-image{
+	float:right;
+}
+
+
+
+
+
+/* 이미지 업로드 팝업 레이어 */ 
+#dialog-upload-form 					{ text-align: left; }
+#dialog-upload-form p					{ padding:20px 0 5px 0; font-weight: bold; font-size:1.1em }
+#dialog-upload-form label, 
+#dialog-upload-form input				{ display:block; }
+#dialog-upload-form label				{ font-weight:bold; margin-top:10px; }
+#dialog-upload-form input				{ outline:none; margin-top:5px; }
+#dialog-upload-form input[type='text']	{ padding: 5px; border:2px solid #A9A9A9; width:260px; }
+

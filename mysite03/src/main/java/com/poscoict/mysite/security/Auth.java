@@ -7,7 +7,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-@Retention(RUNTIME)
+@Retention(RUNTIME)// ANNOTATION이 언제까지 살아있을지 결정 한다.
 @Target({TYPE, METHOD})
 public @interface Auth {
 	// public String value() default "USER";
