@@ -17,9 +17,10 @@ spring:
 
 
 # message resource(Internationalization)
-   always-message-format: true
-   basename: messages/messages_ko
-   encoding: UTF-8
+   messages:
+      always-message-format: true
+      basename: messages/messages_ko
+      encoding: UTF-8
 
 # multipart
    multipart:
