@@ -20,6 +20,12 @@ public class GuestbookController {
 	private GuestbookService guestbookService; //new 객체를 따로 선언을 안하고 그냥 여기서 @Autowired를 사용해서 편하게 간단
 	
 	
+	@RequestMapping("/spa")   // emaillist03 하면 들어가게끔 해준다.  
+	public String spa(Model model) {
+		
+		return "guestbook/index-spa";    //"emaillist"; guestbook의 index로 보낸다.
+	}
+	
 //	@ResponseBody  //AJAX 사용전에는 굳이 사용안해도 됨
 	@RequestMapping("")   // emaillist03 하면 들어가게끔 해준다.  
 	public String index(Model model) {
