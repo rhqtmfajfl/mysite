@@ -25,6 +25,7 @@ public class MySiteApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MySiteApplication.class, args); // 웹에서는 try catch 사용안함
 		//여기서는 try catch 사용 안함 콘솔용 어플리케이션에서만 한다.
+	
 		
 	}
 
